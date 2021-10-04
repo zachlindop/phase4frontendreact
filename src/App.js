@@ -61,13 +61,13 @@ function App() {
             <Home />
             </Route>
 
-            <Route exact path="/">
+            {/* <Route exact path="/">
               <User />
             </Route>
 
             <Route exact path="/">
               <Game />
-            </Route> 
+            </Route>  */}
           </Switch>
          </Router>
       
