@@ -26,7 +26,7 @@ const Users = ({ users, setUsers }) => {
           },
           body: JSON.stringify(data)
         })
-          .then(response =  > response.json())
+          .then(response => response.json())
           .then(user => {
               console.log(`user created: ${JSON.stringify(user)}`);
               setUsers([...users, user]);
