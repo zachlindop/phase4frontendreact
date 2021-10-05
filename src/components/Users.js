@@ -1,24 +1,12 @@
 import React, {useState, useEffect}  from 'react';
-import { Button } from 'react-bootstrap'
+import { Button, NavItem } from 'react-bootstrap'
+import User from './User';
 
 const Users = ({ users, setUsers }) => {
-    const[newUsers, setNewUsers] = useState( [] )
-    const [userName, setUserName] = useState('');
+    const [userName, setUserName] = useState('');    
     const [favLozGame, setFavLozGame] = useState('');
-    const [pic, setPic] = useState('');    
+    const [pic, setPic] = useState(''); 
 
-    function deleteUser (userId){
-        // e.preventDefault();
-        console.log(`delete game called: ${userId}`);
-
-        fetch (`http://localhost:3001/users/${userId}`, { method: 'DELETE' })
-        .then((response) => console.log(response.json()))
-        let filterUsers = users.filter(eachUser => 
-         eachUser.id !== userId)
-         setUsers([...filterUsers])
-        
-
-         }    
 
     function handleCreateUser(e) {
         console.log(`creating user..`);
@@ -32,7 +20,7 @@ const Users = ({ users, setUsers }) => {
             }
         }
     
-        fetch("http://localhost:3001/users", {
+        fetch("http://localhost:3001/users/", {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'
@@ -69,25 +57,18 @@ return (
           </div>          
         </form>
 
-        
-        
-
-
     <div className="gameLibrary">
         {users.map((user, index) => {
             console.log(`user ${index}`);
-            return (                
-                <div className = "user">
-                <h2 className = "userName">{user.name}</h2>
-                <h2 className = "userFavGame">{user.fav_loz_game}</h2>
-                <img src={user.pic} />
-                <br></br>
-                <Button onClick={e => deleteUser(user.id)}>Delete User</Button>
-                {/* <Button onClick={ e => deleteGame(game.id)} */}
+            return (        
+                <div key={user.updated_at}>
+                    <User user={user} users={users} setUsers={setUsers} />
                 </div>
             )
         })}
-    </div>           
+     
+    </div>
+           
     </div>
     )
 }

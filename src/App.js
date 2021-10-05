@@ -50,7 +50,7 @@ function App() {
          <Router>
           <Switch>
             <Route path="/games" component = {Games}>
-              <Games games={games} />
+              <Games users={users} games={games} setGames={setGames} />
             </Route>
 
             <Route path="/users" component = {Users}>
